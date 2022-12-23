@@ -1,4 +1,4 @@
-function [x, fail] = SR_MCC(anc, rangems, maxiter)
+function [x, fail] = SR_MCC(anc, rangems, maxiter, sgm)
 %Paper: Maximum Correntropy Criterion for Robust TOA-Based Localization in NLOS Environments
 %MCC-GTRS Algorithm
 
@@ -6,6 +6,7 @@ function [x, fail] = SR_MCC(anc, rangems, maxiter)
 %anc - matrix including sensor positions 
 %rangems - measured distance vector
 %maxiter - max iteration number
+%sgm - initial kernel size, e.g., sgm = inf;
 
 %-Outputs
 %x - location estimate
@@ -25,7 +26,6 @@ D(1:2,1:2) = diag([1,1]);
 f = [0;0;-0.5];
 w = zeros(L,1);
 
-sgm = inf;
 fail = false;
 
 %k: counter for iterations
