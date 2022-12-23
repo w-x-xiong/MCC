@@ -69,11 +69,11 @@ while 1
 
     N_iter = 30;
 
-    lambda = bisection_fun(min_lim, max_lim, tol, N_iter, A, D, b, f); % I am calling the bisection function
+    lambda = bisection_fun(min_lim, max_lim, tol, N_iter, A, D, b, f);
     
-    y_hat = (A' * A + lambda * D + 1e-6 * eye(3)) \ (A' * b - lambda * f); % Adding regularization term to avoind matrix singularity
+    y_hat = (A' * A + lambda * D + 1e-6 * eye(3)) \ (A' * b - lambda * f);
 
-    x = [y_hat(1); y_hat(2)]; % y = [x_1, x_2, ||x||^2, b, b^2]' (I only need the solution for x)
+    x = [y_hat(1); y_hat(2)]; % y = [x_1, x_2, ||x||^2, b, b^2]'
     
     if sum(sum(isnan(x))) >= 1 || sum(sum(isinf(x))) >= 1
         
